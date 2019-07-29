@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ketech.bq.ketech.mapper.DmWpEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ketech.bq.ketech.entity.DmWpEntity">
+    <result column="sawpbh" jdbcType="VARCHAR" property="sawpbh" />
+    <result column="asjbh" jdbcType="VARCHAR" property="asjbh" />
+    <result column="rybh" jdbcType="VARCHAR" property="rybh" />
+    <result column="wplb" jdbcType="VARCHAR" property="wplb" />
+    <result column="wpjs" jdbcType="VARCHAR" property="wpjs" />
+    <result column="sawpdm" jdbcType="VARCHAR" property="sawpdm" />
+    <result column="sawp_dmbcms" jdbcType="VARCHAR" property="sawpDmbcms" />
+    <result column="wqlbdm" jdbcType="VARCHAR" property="wqlbdm" />
+    <result column="wpmc" jdbcType="VARCHAR" property="wpmc" />
+    <result column="wp_xh" jdbcType="VARCHAR" property="wpXh" />
+    <result column="wpbzhlbdm" jdbcType="VARCHAR" property="wpbzhlbdm" />
+    <result column="wpbzhlb" jdbcType="VARCHAR" property="wpbzhlb" />
+    <result column="wpbzhlbdmbcms" jdbcType="VARCHAR" property="wpbzhlbdmbcms" />
+    <result column="wpbzh" jdbcType="VARCHAR" property="wpbzh" />
+    <result column="ppxh" jdbcType="VARCHAR" property="ppxh" />
+    <result column="wpgg" jdbcType="VARCHAR" property="wpgg" />
+    <result column="wpys_wpysdm" jdbcType="VARCHAR" property="wpysWpysdm" />
+    <result column="wpys_wpys" jdbcType="VARCHAR" property="wpysWpys" />
+    <result column="wpys_dmbcms" jdbcType="VARCHAR" property="wpysDmbcms" />
+    <result column="wpjz_rmby" jdbcType="VARCHAR" property="wpjzRmby" />
+    <result column="wpsl" jdbcType="VARCHAR" property="wpsl" />
+    <result column="wpsldw" jdbcType="VARCHAR" property="wpsldw" />
+    <result column="wpzl" jdbcType="VARCHAR" property="wpzl" />
+    <result column="jldldw" jdbcType="VARCHAR" property="jldldw" />
+    <result column="wptzms" jdbcType="VARCHAR" property="wptzms" />
+    <result column="wpzw_pdbsdm" jdbcType="VARCHAR" property="wpzwPdbsdm" />
+    <result column="wpzw_pdbs" jdbcType="VARCHAR" property="wpzwPdbs" />
+    <result column="wplyms" jdbcType="VARCHAR" property="wplyms" />
+    <result column="wpgzrq" jdbcType="VARCHAR" property="wpgzrq" />
+    <result column="wpqx" jdbcType="VARCHAR" property="wpqx" />
+    <result column="chrq" jdbcType="VARCHAR" property="chrq" />
+    <result column="chr" jdbcType="VARCHAR" property="chr" />
+    <result column="chrlxdh" jdbcType="VARCHAR" property="chrlxdh" />
+    <result column="fxdw" jdbcType="VARCHAR" property="fxdw" />
+    <result column="fxrq" jdbcType="VARCHAR" property="fxrq" />
+    <result column="fxrlxdh" jdbcType="VARCHAR" property="fxrlxdh" />
+    <result column="chdw" jdbcType="VARCHAR" property="chdw" />
+    <result column="fxdd" jdbcType="VARCHAR" property="fxdd" />
+    <result column="hbzldm" jdbcType="VARCHAR" property="hbzldm" />
+    <result column="me" jdbcType="VARCHAR" property="me" />
+    <result column="dyxhdm" jdbcType="VARCHAR" property="dyxhdm" />
+    <result column="syr_cyzjlxdm" jdbcType="VARCHAR" property="syrCyzjlxdm" />
+    <result column="syr_cyzjlxmc" jdbcType="VARCHAR" property="syrCyzjlxmc" />
+    <result column="syr_zjhm" jdbcType="VARCHAR" property="syrZjhm" />
+    <result column="syr_lxdh" jdbcType="VARCHAR" property="syrLxdh" />
+    <result column="syr_xm" jdbcType="VARCHAR" property="syrXm" />
+    <result column="cyr_xm" jdbcType="VARCHAR" property="cyrXm" />
+    <result column="cyr_cyzjlxdm" jdbcType="VARCHAR" property="cyrCyzjlxdm" />
+    <result column="cyr_zjhm" jdbcType="VARCHAR" property="cyrZjhm" />
+    <result column="cyr_lxdh" jdbcType="VARCHAR" property="cyrLxdh" />
+    <result column="ly" jdbcType="VARCHAR" property="ly" />
+    <result column="cjsj" jdbcType="VARCHAR" property="cjsj" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sawpbh, asjbh, rybh, wplb, wpjs, sawpdm, sawp_dmbcms, wqlbdm, wpmc, wp_xh, wpbzhlbdm, 
+    wpbzhlb, wpbzhlbdmbcms, wpbzh, ppxh, wpgg, wpys_wpysdm, wpys_wpys, wpys_dmbcms, wpjz_rmby, 
+    wpsl, wpsldw, wpzl, jldldw, wptzms, wpzw_pdbsdm, wpzw_pdbs, wplyms, wpgzrq, wpqx, 
+    chrq, chr, chrlxdh, fxdw, fxrq, fxrlxdh, chdw, fxdd, hbzldm, me, dyxhdm, syr_cyzjlxdm, 
+    syr_cyzjlxmc, syr_zjhm, syr_lxdh, syr_xm, cyr_xm, cyr_cyzjlxdm, cyr_zjhm, cyr_lxdh, 
+    ly, cjsj
+  </sql>
+  <select id="selectByExample" parameterType="com.ketech.bq.ketech.entity.DmWpEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dm_wp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ketech.bq.ketech.entity.DmWpEntityExample">
+    delete from dm_wp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ketech.bq.ketech.entity.DmWpEntity">
+    insert into dm_wp (sawpbh, asjbh, rybh, 
+      wplb, wpjs, sawpdm, 
+      sawp_dmbcms, wqlbdm, wpmc, 
+      wp_xh, wpbzhlbdm, wpbzhlb, 
+      wpbzhlbdmbcms, wpbzh, ppxh, 
+      wpgg, wpys_wpysdm, wpys_wpys, 
+      wpys_dmbcms, wpjz_rmby, wpsl, 
+      wpsldw, wpzl, jldldw, 
+      wptzms, wpzw_pdbsdm, wpzw_pdbs, 
+      wplyms, wpgzrq, wpqx, 
+      chrq, chr, chrlxdh, 
+      fxdw, fxrq, fxrlxdh, 
+      chdw, fxdd, hbzldm, 
+      me, dyxhdm, syr_cyzjlxdm, 
+      syr_cyzjlxmc, syr_zjhm, syr_lxdh, 
+      syr_xm, cyr_xm, cyr_cyzjlxdm, 
+      cyr_zjhm, cyr_lxdh, ly, 
+      cjsj)
+    values (#{sawpbh,jdbcType=VARCHAR}, #{asjbh,jdbcType=VARCHAR}, #{rybh,jdbcType=VARCHAR}, 
+      #{wplb,jdbcType=VARCHAR}, #{wpjs,jdbcType=VARCHAR}, #{sawpdm,jdbcType=VARCHAR}, 
+      #{sawpDmbcms,jdbcType=VARCHAR}, #{wqlbdm,jdbcType=VARCHAR}, #{wpmc,jdbcType=VARCHAR}, 
+      #{wpXh,jdbcType=VARCHAR}, #{wpbzhlbdm,jdbcType=VARCHAR}, #{wpbzhlb,jdbcType=VARCHAR}, 
+      #{wpbzhlbdmbcms,jdbcType=VARCHAR}, #{wpbzh,jdbcType=VARCHAR}, #{ppxh,jdbcType=VARCHAR}, 
+      #{wpgg,jdbcType=VARCHAR}, #{wpysWpysdm,jdbcType=VARCHAR}, #{wpysWpys,jdbcType=VARCHAR}, 
+      #{wpysDmbcms,jdbcType=VARCHAR}, #{wpjzRmby,jdbcType=VARCHAR}, #{wpsl,jdbcType=VARCHAR}, 
+      #{wpsldw,jdbcType=VARCHAR}, #{wpzl,jdbcType=VARCHAR}, #{jldldw,jdbcType=VARCHAR}, 
+      #{wptzms,jdbcType=VARCHAR}, #{wpzwPdbsdm,jdbcType=VARCHAR}, #{wpzwPdbs,jdbcType=VARCHAR}, 
+      #{wplyms,jdbcType=VARCHAR}, #{wpgzrq,jdbcType=VARCHAR}, #{wpqx,jdbcType=VARCHAR}, 
+      #{chrq,jdbcType=VARCHAR}, #{chr,jdbcType=VARCHAR}, #{chrlxdh,jdbcType=VARCHAR}, 
+      #{fxdw,jdbcType=VARCHAR}, #{fxrq,jdbcType=VARCHAR}, #{fxrlxdh,jdbcType=VARCHAR}, 
+      #{chdw,jdbcType=VARCHAR}, #{fxdd,jdbcType=VARCHAR}, #{hbzldm,jdbcType=VARCHAR}, 
+      #{me,jdbcType=VARCHAR}, #{dyxhdm,jdbcType=VARCHAR}, #{syrCyzjlxdm,jdbcType=VARCHAR}, 
+      #{syrCyzjlxmc,jdbcType=VARCHAR}, #{syrZjhm,jdbcType=VARCHAR}, #{syrLxdh,jdbcType=VARCHAR}, 
+      #{syrXm,jdbcType=VARCHAR}, #{cyrXm,jdbcType=VARCHAR}, #{cyrCyzjlxdm,jdbcType=VARCHAR}, 
+      #{cyrZjhm,jdbcType=VARCHAR}, #{cyrLxdh,jdbcType=VARCHAR}, #{ly,jdbcType=VARCHAR}, 
+      #{cjsj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ketech.bq.ketech.entity.DmWpEntity">
+    insert into dm_wp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sawpbh != null">
+        sawpbh,
+      </if>
+      <if test="asjbh != null">
+        asjbh,
+      </if>
+      <if test="rybh != null">
+        rybh,
+      </if>
+      <if test="wplb != null">
+        wplb,
+      </if>
+      <if test="wpjs != null">
+        wpjs,
+      </if>
+      <if test="sawpdm != null">
+        sawpdm,
+      </if>
+      <if test="sawpDmbcms != null">
+        sawp_dmbcms,
+      </if>
+      <if test="wqlbdm != null">
+        wqlbdm,
+      </if>
+      <if test="wpmc != null">
+        wpmc,
+      </if>
+      <if test="wpXh != null">
+        wp_xh,
+      </if>
+      <if test="wpbzhlbdm != null">
+        wpbzhlbdm,
+      </if>
+      <if test="wpbzhlb != null">
+        wpbzhlb,
+      </if>
+      <if test="wpbzhlbdmbcms != null">
+        wpbzhlbdmbcms,
+      </if>
+      <if test="wpbzh != null">
+        wpbzh,
+      </if>
+      <if test="ppxh != null">
+        ppxh,
+      </if>
+      <if test="wpgg != null">
+        wpgg,
+      </if>
+      <if test="wpysWpysdm != null">
+        wpys_wpysdm,
+      </if>
+      <if test="wpysWpys != null">
+        wpys_wpys,
+      </if>
+      <if test="wpysDmbcms != null">
+        wpys_dmbcms,
+      </if>
+      <if test="wpjzRmby != null">
+        wpjz_rmby,
+      </if>
+      <if test="wpsl != null">
+        wpsl,
+      </if>
+      <if test="wpsldw != null">
+        wpsldw,
+      </if>
+      <if test="wpzl != null">
+        wpzl,
+      </if>
+      <if test="jldldw != null">
+        jldldw,
+      </if>
+      <if test="wptzms != null">
+        wptzms,
+      </if>
+      <if test="wpzwPdbsdm != null">
+        wpzw_pdbsdm,
+      </if>
+      <if test="wpzwPdbs != null">
+        wpzw_pdbs,
+      </if>
+      <if test="wplyms != null">
+        wplyms,
+      </if>
+      <if test="wpgzrq != null">
+        wpgzrq,
+      </if>
+      <if test="wpqx != null">
+        wpqx,
+      </if>
+      <if test="chrq != null">
+        chrq,
+      </if>
+      <if test="chr != null">
+        chr,
+      </if>
+      <if test="chrlxdh != null">
+        chrlxdh,
+      </if>
+      <if test="fxdw != null">
+        fxdw,
+      </if>
+      <if test="fxrq != null">
+        fxrq,
+      </if>
+      <if test="fxrlxdh != null">
+        fxrlxdh,
+      </if>
+      <if test="chdw != null">
+        chdw,
+      </if>
+      <if test="fxdd != null">
+        fxdd,
+      </if>
+      <if test="hbzldm != null">
+        hbzldm,
+      </if>
+      <if test="me != null">
+        me,
+      </if>
+      <if test="dyxhdm != null">
+        dyxhdm,
+      </if>
+      <if test="syrCyzjlxdm != null">
+        syr_cyzjlxdm,
+      </if>
+      <if test="syrCyzjlxmc != null">
+        syr_cyzjlxmc,
+      </if>
+      <if test="syrZjhm != null">
+        syr_zjhm,
+      </if>
+      <if test="syrLxdh != null">
+        syr_lxdh,
+      </if>
+      <if test="syrXm != null">
+        syr_xm,
+      </if>
+      <if test="cyrXm != null">
+        cyr_xm,
+      </if>
+      <if test="cyrCyzjlxdm != null">
+        cyr_cyzjlxdm,
+      </if>
+      <if test="cyrZjhm != null">
+        cyr_zjhm,
+      </if>
+      <if test="cyrLxdh != null">
+        cyr_lxdh,
+      </if>
+      <if test="ly != null">
+        ly,
+      </if>
+      <if test="cjsj != null">
+        cjsj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sawpbh != null">
+        #{sawpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="asjbh != null">
+        #{asjbh,jdbcType=VARCHAR},
+      </if>
+      <if test="rybh != null">
+        #{rybh,jdbcType=VARCHAR},
+      </if>
+      <if test="wplb != null">
+        #{wplb,jdbcType=VARCHAR},
+      </if>
+      <if test="wpjs != null">
+        #{wpjs,jdbcType=VARCHAR},
+      </if>
+      <if test="sawpdm != null">
+        #{sawpdm,jdbcType=VARCHAR},
+      </if>
+      <if test="sawpDmbcms != null">
+        #{sawpDmbcms,jdbcType=VARCHAR},
+      </if>
+      <if test="wqlbdm != null">
+        #{wqlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="wpmc != null">
+        #{wpmc,jdbcType=VARCHAR},
+      </if>
+      <if test="wpXh != null">
+        #{wpXh,jdbcType=VARCHAR},
+      </if>
+      <if test="wpbzhlbdm != null">
+        #{wpbzhlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="wpbzhlb != null">
+        #{wpbzhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="wpbzhlbdmbcms != null">
+        #{wpbzhlbdmbcms,jdbcType=VARCHAR},
+      </if>
+      <if test="wpbzh != null">
+        #{wpbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="ppxh != null">
+        #{ppxh,jdbcType=VARCHAR},
+      </if>
+      <if test="wpgg != null">
+        #{wpgg,jdbcType=VARCHAR},
+      </if>
+      <if test="wpysWpysdm != null">
+        #{wpysWpysdm,jdbcType=VARCHAR},
+      </if>
+      <if test="wpysWpys != null">
+        #{wpysWpys,jdbcType=VARCHAR},
+      </if>
+      <if test="wpysDmbcms != null">
+        #{wpysDmbcms,jdbcType=VARCHAR},
+      </if>
+      <if test="wpjzRmby != null">
+        #{wpjzRmby,jdbcType=VARCHAR},
+      </if>
+      <if test="wpsl != null">
+        #{wpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="wpsldw != null">
+        #{wpsldw,jdbcType=VARCHAR},
+      </if>
+      <if test="wpzl != null">
+        #{wpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="jldldw != null">
+        #{jldldw,jdbcType=VARCHAR},
+      </if>
+      <if test="wptzms != null">
+        #{wptzms,jdbcType=VARCHAR},
+      </if>
+      <if test="wpzwPdbsdm != null">
+        #{wpzwPdbsdm,jdbcType=VARCHAR},
+      </if>
+      <if test="wpzwPdbs != null">
+        #{wpzwPdbs,jdbcType=VARCHAR},
+      </if>
+      <if test="wplyms != null">
+        #{wplyms,jdbcType=VARCHAR},
+      </if>
+      <if test="wpgzrq != null">
+        #{wpgzrq,jdbcType=VARCHAR},
+      </if>
+      <if test="wpqx != null">
+        #{wpqx,jdbcType=VARCHAR},
+      </if>
+      <if test="chrq != null">
+        #{chrq,jdbcType=VARCHAR},
+      </if>
+      <if test="chr != null">
+        #{chr,jdbcType=VARCHAR},
+      </if>
+      <if test="chrlxdh != null">
+        #{chrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="fxdw != null">
+        #{fxdw,jdbcType=VARCHAR},
+      </if>
+      <if test="fxrq != null">
+        #{fxrq,jdbcType=VARCHAR},
+      </if>
+      <if test="fxrlxdh != null">
+        #{fxrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="chdw != null">
+        #{chdw,jdbcType=VARCHAR},
+      </if>
+      <if test="fxdd != null">
+        #{fxdd,jdbcType=VARCHAR},
+      </if>
+      <if test="hbzldm != null">
+        #{hbzldm,jdbcType=VARCHAR},
+      </if>
+      <if test="me != null">
+        #{me,jdbcType=VARCHAR},
+      </if>
+      <if test="dyxhdm != null">
+        #{dyxhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="syrCyzjlxdm != null">
+        #{syrCyzjlxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="syrCyzjlxmc != null">
+        #{syrCyzjlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="syrZjhm != null">
+        #{syrZjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="syrLxdh != null">
+        #{syrLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="syrXm != null">
+        #{syrXm,jdbcType=VARCHAR},
+      </if>
+      <if test="cyrXm != null">
+        #{cyrXm,jdbcType=VARCHAR},
+      </if>
+      <if test="cyrCyzjlxdm != null">
+        #{cyrCyzjlxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="cyrZjhm != null">
+        #{cyrZjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="cyrLxdh != null">
+        #{cyrLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ly != null">
+        #{ly,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsj != null">
+        #{cjsj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ketech.bq.ketech.entity.DmWpEntityExample" resultType="java.lang.Long">
+    select count(*) from dm_wp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dm_wp
+    <set>
+      <if test="record.sawpbh != null">
+        sawpbh = #{record.sawpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.asjbh != null">
+        asjbh = #{record.asjbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rybh != null">
+        rybh = #{record.rybh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wplb != null">
+        wplb = #{record.wplb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpjs != null">
+        wpjs = #{record.wpjs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sawpdm != null">
+        sawpdm = #{record.sawpdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sawpDmbcms != null">
+        sawp_dmbcms = #{record.sawpDmbcms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wqlbdm != null">
+        wqlbdm = #{record.wqlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpmc != null">
+        wpmc = #{record.wpmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpXh != null">
+        wp_xh = #{record.wpXh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpbzhlbdm != null">
+        wpbzhlbdm = #{record.wpbzhlbdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpbzhlb != null">
+        wpbzhlb = #{record.wpbzhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpbzhlbdmbcms != null">
+        wpbzhlbdmbcms = #{record.wpbzhlbdmbcms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpbzh != null">
+        wpbzh = #{record.wpbzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ppxh != null">
+        ppxh = #{record.ppxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpgg != null">
+        wpgg = #{record.wpgg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpysWpysdm != null">
+        wpys_wpysdm = #{record.wpysWpysdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpysWpys != null">
+        wpys_wpys = #{record.wpysWpys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpysDmbcms != null">
+        wpys_dmbcms = #{record.wpysDmbcms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpjzRmby != null">
+        wpjz_rmby = #{record.wpjzRmby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpsl != null">
+        wpsl = #{record.wpsl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpsldw != null">
+        wpsldw = #{record.wpsldw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpzl != null">
+        wpzl = #{record.wpzl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jldldw != null">
+        jldldw = #{record.jldldw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wptzms != null">
+        wptzms = #{record.wptzms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpzwPdbsdm != null">
+        wpzw_pdbsdm = #{record.wpzwPdbsdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpzwPdbs != null">
+        wpzw_pdbs = #{record.wpzwPdbs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wplyms != null">
+        wplyms = #{record.wplyms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpgzrq != null">
+        wpgzrq = #{record.wpgzrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wpqx != null">
+        wpqx = #{record.wpqx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chrq != null">
+        chrq = #{record.chrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chr != null">
+        chr = #{record.chr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chrlxdh != null">
+        chrlxdh = #{record.chrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fxdw != null">
+        fxdw = #{record.fxdw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fxrq != null">
+        fxrq = #{record.fxrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fxrlxdh != null">
+        fxrlxdh = #{record.fxrlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chdw != null">
+        chdw = #{record.chdw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fxdd != null">
+        fxdd = #{record.fxdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hbzldm != null">
+        hbzldm = #{record.hbzldm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me != null">
+        me = #{record.me,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dyxhdm != null">
+        dyxhdm = #{record.dyxhdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syrCyzjlxdm != null">
+        syr_cyzjlxdm = #{record.syrCyzjlxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syrCyzjlxmc != null">
+        syr_cyzjlxmc = #{record.syrCyzjlxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syrZjhm != null">
+        syr_zjhm = #{record.syrZjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syrLxdh != null">
+        syr_lxdh = #{record.syrLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syrXm != null">
+        syr_xm = #{record.syrXm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyrXm != null">
+        cyr_xm = #{record.cyrXm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyrCyzjlxdm != null">
+        cyr_cyzjlxdm = #{record.cyrCyzjlxdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyrZjhm != null">
+        cyr_zjhm = #{record.cyrZjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyrLxdh != null">
+        cyr_lxdh = #{record.cyrLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ly != null">
+        ly = #{record.ly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjsj != null">
+        cjsj = #{record.cjsj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dm_wp
+    set sawpbh = #{record.sawpbh,jdbcType=VARCHAR},
+      asjbh = #{record.asjbh,jdbcType=VARCHAR},
+      rybh = #{record.rybh,jdbcType=VARCHAR},
+      wplb = #{record.wplb,jdbcType=VARCHAR},
+      wpjs = #{record.wpjs,jdbcType=VARCHAR},
+      sawpdm = #{record.sawpdm,jdbcType=VARCHAR},
+      sawp_dmbcms = #{record.sawpDmbcms,jdbcType=VARCHAR},
+      wqlbdm = #{record.wqlbdm,jdbcType=VARCHAR},
+      wpmc = #{record.wpmc,jdbcType=VARCHAR},
+      wp_xh = #{record.wpXh,jdbcType=VARCHAR},
+      wpbzhlbdm = #{record.wpbzhlbdm,jdbcType=VARCHAR},
+      wpbzhlb = #{record.wpbzhlb,jdbcType=VARCHAR},
+      wpbzhlbdmbcms = #{record.wpbzhlbdmbcms,jdbcType=VARCHAR},
+      wpbzh = #{record.wpbzh,jdbcType=VARCHAR},
+      ppxh = #{record.ppxh,jdbcType=VARCHAR},
+      wpgg = #{record.wpgg,jdbcType=VARCHAR},
+      wpys_wpysdm = #{record.wpysWpysdm,jdbcType=VARCHAR},
+      wpys_wpys = #{record.wpysWpys,jdbcType=VARCHAR},
+      wpys_dmbcms = #{record.wpysDmbcms,jdbcType=VARCHAR},
+      wpjz_rmby = #{record.wpjzRmby,jdbcType=VARCHAR},
+      wpsl = #{record.wpsl,jdbcType=VARCHAR},
+      wpsldw = #{record.wpsldw,jdbcType=VARCHAR},
+      wpzl = #{record.wpzl,jdbcType=VARCHAR},
+      jldldw = #{record.jldldw,jdbcType=VARCHAR},
+      wptzms = #{record.wptzms,jdbcType=VARCHAR},
+      wpzw_pdbsdm = #{record.wpzwPdbsdm,jdbcType=VARCHAR},
+      wpzw_pdbs = #{record.wpzwPdbs,jdbcType=VARCHAR},
+      wplyms = #{record.wplyms,jdbcType=VARCHAR},
+      wpgzrq = #{record.wpgzrq,jdbcType=VARCHAR},
+      wpqx = #{record.wpqx,jdbcType=VARCHAR},
+      chrq = #{record.chrq,jdbcType=VARCHAR},
+      chr = #{record.chr,jdbcType=VARCHAR},
+      chrlxdh = #{record.chrlxdh,jdbcType=VARCHAR},
+      fxdw = #{record.fxdw,jdbcType=VARCHAR},
+      fxrq = #{record.fxrq,jdbcType=VARCHAR},
+      fxrlxdh = #{record.fxrlxdh,jdbcType=VARCHAR},
+      chdw = #{record.chdw,jdbcType=VARCHAR},
+      fxdd = #{record.fxdd,jdbcType=VARCHAR},
+      hbzldm = #{record.hbzldm,jdbcType=VARCHAR},
+      me = #{record.me,jdbcType=VARCHAR},
+      dyxhdm = #{record.dyxhdm,jdbcType=VARCHAR},
+      syr_cyzjlxdm = #{record.syrCyzjlxdm,jdbcType=VARCHAR},
+      syr_cyzjlxmc = #{record.syrCyzjlxmc,jdbcType=VARCHAR},
+      syr_zjhm = #{record.syrZjhm,jdbcType=VARCHAR},
+      syr_lxdh = #{record.syrLxdh,jdbcType=VARCHAR},
+      syr_xm = #{record.syrXm,jdbcType=VARCHAR},
+      cyr_xm = #{record.cyrXm,jdbcType=VARCHAR},
+      cyr_cyzjlxdm = #{record.cyrCyzjlxdm,jdbcType=VARCHAR},
+      cyr_zjhm = #{record.cyrZjhm,jdbcType=VARCHAR},
+      cyr_lxdh = #{record.cyrLxdh,jdbcType=VARCHAR},
+      ly = #{record.ly,jdbcType=VARCHAR},
+      cjsj = #{record.cjsj,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

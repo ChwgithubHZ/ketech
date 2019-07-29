@@ -1,0 +1,70 @@
+package com.ketech.bq.ketech.common;
+
+/******************
+ * @描述：  异常返回工具类
+ * @createBy:lailai
+ * @data:2019/3/25 14:37
+ */
+public class ResultUtil {
+
+    /**
+     * 返回成功，传入返回体具体出參
+     * @param object
+     * @return
+     */
+    public static Result success(Object object){
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setError_code("");
+        result.setMsg("request handler success");
+        result.setData(object);
+        return result;
+    }
+
+    /**
+     * 提供给部分不需要出參的接口
+     * @return
+     */
+    public static Result success(){
+        return success(null);
+    }
+
+    /**
+     * 自定义错误信息
+     * @param code
+     * @param msg
+     * @return
+     */
+    public static Result error(String code,String msg){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setError_code(code);
+        result.setMsg(msg);
+        result.setData(null);
+        return result;
+    }
+
+    public static Result error(ExceptionEnum exceptionEnum,Object object){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setError_code(exceptionEnum.getCode());
+        result.setMsg(exceptionEnum.getMsg());
+        result.setData(object);
+        return result;
+    }
+
+    /**
+     * 返回异常信息，在已知的范围内
+     * @param exceptionEnum
+     * @return
+     */
+    public static Result error(ExceptionEnum exceptionEnum,String data){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setError_code(exceptionEnum.getCode());
+        result.setMsg(exceptionEnum.getMsg());
+        result.setData(data);
+        return result;
+    }
+
+}

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ketech.bq.ketech.mapper.DmHmEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ketech.bq.ketech.entity.DmHmEntity">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="zjhm" jdbcType="VARCHAR" property="zjhm" />
+    <result column="zjhmgsd" jdbcType="VARCHAR" property="zjhmgsd" />
+    <result column="bjhm" jdbcType="VARCHAR" property="bjhm" />
+    <result column="bjhmgsd" jdbcType="VARCHAR" property="bjhmgsd" />
+    <result column="thkssj" jdbcType="VARCHAR" property="thkssj" />
+    <result column="thsj" jdbcType="BIGINT" property="thsj" />
+    <result column="hjlx" jdbcType="VARCHAR" property="hjlx" />
+    <result column="djz__lac" jdbcType="VARCHAR" property="djzLac" />
+    <result column="xjz__ci" jdbcType="VARCHAR" property="xjzCi" />
+    <result column="sjly" jdbcType="VARCHAR" property="sjly" />
+    <result column="cjsj" jdbcType="TIMESTAMP" property="cjsj" />
+    <result column="gxsj" jdbcType="TIMESTAMP" property="gxsj" />
+    <result column="tbsj" jdbcType="TIMESTAMP" property="tbsj" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, zjhm, zjhmgsd, bjhm, bjhmgsd, thkssj, thsj, hjlx, djz__lac, xjz__ci, sjly, cjsj, 
+    gxsj, tbsj
+  </sql>
+  <select id="selectByExample" parameterType="com.ketech.bq.ketech.entity.DmHmEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dm_hd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ketech.bq.ketech.entity.DmHmEntityExample">
+    delete from dm_hd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ketech.bq.ketech.entity.DmHmEntity">
+    insert into dm_hd (id, zjhm, zjhmgsd, 
+      bjhm, bjhmgsd, thkssj, 
+      thsj, hjlx, djz__lac, 
+      xjz__ci, sjly, cjsj, 
+      gxsj, tbsj)
+    values (#{id,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{zjhmgsd,jdbcType=VARCHAR}, 
+      #{bjhm,jdbcType=VARCHAR}, #{bjhmgsd,jdbcType=VARCHAR}, #{thkssj,jdbcType=VARCHAR}, 
+      #{thsj,jdbcType=BIGINT}, #{hjlx,jdbcType=VARCHAR}, #{djzLac,jdbcType=VARCHAR}, 
+      #{xjzCi,jdbcType=VARCHAR}, #{sjly,jdbcType=VARCHAR}, #{cjsj,jdbcType=TIMESTAMP}, 
+      #{gxsj,jdbcType=TIMESTAMP}, #{tbsj,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ketech.bq.ketech.entity.DmHmEntity">
+    insert into dm_hd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="zjhm != null">
+        zjhm,
+      </if>
+      <if test="zjhmgsd != null">
+        zjhmgsd,
+      </if>
+      <if test="bjhm != null">
+        bjhm,
+      </if>
+      <if test="bjhmgsd != null">
+        bjhmgsd,
+      </if>
+      <if test="thkssj != null">
+        thkssj,
+      </if>
+      <if test="thsj != null">
+        thsj,
+      </if>
+      <if test="hjlx != null">
+        hjlx,
+      </if>
+      <if test="djzLac != null">
+        djz__lac,
+      </if>
+      <if test="xjzCi != null">
+        xjz__ci,
+      </if>
+      <if test="sjly != null">
+        sjly,
+      </if>
+      <if test="cjsj != null">
+        cjsj,
+      </if>
+      <if test="gxsj != null">
+        gxsj,
+      </if>
+      <if test="tbsj != null">
+        tbsj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zjhm != null">
+        #{zjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zjhmgsd != null">
+        #{zjhmgsd,jdbcType=VARCHAR},
+      </if>
+      <if test="bjhm != null">
+        #{bjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="bjhmgsd != null">
+        #{bjhmgsd,jdbcType=VARCHAR},
+      </if>
+      <if test="thkssj != null">
+        #{thkssj,jdbcType=VARCHAR},
+      </if>
+      <if test="thsj != null">
+        #{thsj,jdbcType=BIGINT},
+      </if>
+      <if test="hjlx != null">
+        #{hjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="djzLac != null">
+        #{djzLac,jdbcType=VARCHAR},
+      </if>
+      <if test="xjzCi != null">
+        #{xjzCi,jdbcType=VARCHAR},
+      </if>
+      <if test="sjly != null">
+        #{sjly,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsj != null">
+        #{cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxsj != null">
+        #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tbsj != null">
+        #{tbsj,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ketech.bq.ketech.entity.DmHmEntityExample" resultType="java.lang.Long">
+    select count(*) from dm_hd
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dm_hd
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjhm != null">
+        zjhm = #{record.zjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjhmgsd != null">
+        zjhmgsd = #{record.zjhmgsd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bjhm != null">
+        bjhm = #{record.bjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bjhmgsd != null">
+        bjhmgsd = #{record.bjhmgsd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thkssj != null">
+        thkssj = #{record.thkssj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thsj != null">
+        thsj = #{record.thsj,jdbcType=BIGINT},
+      </if>
+      <if test="record.hjlx != null">
+        hjlx = #{record.hjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djzLac != null">
+        djz__lac = #{record.djzLac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xjzCi != null">
+        xjz__ci = #{record.xjzCi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjly != null">
+        sjly = #{record.sjly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjsj != null">
+        cjsj = #{record.cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gxsj != null">
+        gxsj = #{record.gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tbsj != null">
+        tbsj = #{record.tbsj,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dm_hd
+    set id = #{record.id,jdbcType=VARCHAR},
+      zjhm = #{record.zjhm,jdbcType=VARCHAR},
+      zjhmgsd = #{record.zjhmgsd,jdbcType=VARCHAR},
+      bjhm = #{record.bjhm,jdbcType=VARCHAR},
+      bjhmgsd = #{record.bjhmgsd,jdbcType=VARCHAR},
+      thkssj = #{record.thkssj,jdbcType=VARCHAR},
+      thsj = #{record.thsj,jdbcType=BIGINT},
+      hjlx = #{record.hjlx,jdbcType=VARCHAR},
+      djz__lac = #{record.djzLac,jdbcType=VARCHAR},
+      xjz__ci = #{record.xjzCi,jdbcType=VARCHAR},
+      sjly = #{record.sjly,jdbcType=VARCHAR},
+      cjsj = #{record.cjsj,jdbcType=TIMESTAMP},
+      gxsj = #{record.gxsj,jdbcType=TIMESTAMP},
+      tbsj = #{record.tbsj,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ketech.bq.ketech.mapper.DmTxhmEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ketech.bq.ketech.entity.DmTxhmEntity">
+    <result column="hmlx" jdbcType="VARCHAR" property="hmlx" />
+    <result column="gmtj" jdbcType="VARCHAR" property="gmtj" />
+    <result column="syqx" jdbcType="VARCHAR" property="syqx" />
+    <result column="rjmc" jdbcType="VARCHAR" property="rjmc" />
+    <result column="dltxsbgs" jdbcType="VARCHAR" property="dltxsbgs" />
+    <result column="zhlxdh" jdbcType="VARCHAR" property="zhlxdh" />
+    <result column="zjyzthcs" jdbcType="VARCHAR" property="zjyzthcs" />
+    <result column="zjyythcs" jdbcType="VARCHAR" property="zjyythcs" />
+    <result column="zjyzclxhm" jdbcType="VARCHAR" property="zjyzclxhm" />
+    <result column="zjyyclxhm" jdbcType="VARCHAR" property="zjyyclxhm" />
+    <result column="zjyzbddhgs" jdbcType="VARCHAR" property="zjyzbddhgs" />
+    <result column="zjyybddhgs" jdbcType="VARCHAR" property="zjyybddhgs" />
+    <result column="zyyzdctxhmgs" jdbcType="VARCHAR" property="zyyzdctxhmgs" />
+    <result column="zjyydctxhmgs" jdbcType="VARCHAR" property="zjyydctxhmgs" />
+    <result column="zjbnbdyhkhdh" jdbcType="VARCHAR" property="zjbnbdyhkhdh" />
+    <result column="zjbnsfchjzy" jdbcType="VARCHAR" property="zjbnsfchjzy" />
+    <result column="hmhyd" jdbcType="VARCHAR" property="hmhyd" />
+    <result column="khr" jdbcType="VARCHAR" property="khr" />
+    <result column="cyr" jdbcType="VARCHAR" property="cyr" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="zffs" jdbcType="VARCHAR" property="zffs" />
+    <result column="bdzhb" jdbcType="VARCHAR" property="bdzhb" />
+    <result column="bdwx" jdbcType="VARCHAR" property="bdwx" />
+    <result column="bdqq" jdbcType="VARCHAR" property="bdqq" />
+    <result column="bdyx" jdbcType="VARCHAR" property="bdyx" />
+    <result column="bdyhk" jdbcType="VARCHAR" property="bdyhk" />
+    <result column="bdhm" jdbcType="VARCHAR" property="bdhm" />
+    <result column="qqhm" jdbcType="VARCHAR" property="qqhm" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    hmlx, gmtj, syqx, rjmc, dltxsbgs, zhlxdh, zjyzthcs, zjyythcs, zjyzclxhm, zjyyclxhm, 
+    zjyzbddhgs, zjyybddhgs, zyyzdctxhmgs, zjyydctxhmgs, zjbnbdyhkhdh, zjbnsfchjzy, hmhyd, 
+    khr, cyr, ip, zffs, bdzhb, bdwx, bdqq, bdyx, bdyhk, bdhm, qqhm
+  </sql>
+  <select id="selectByExample" parameterType="com.ketech.bq.ketech.entity.DmTxhmEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dm_bq_txhm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ketech.bq.ketech.entity.DmTxhmEntityExample">
+    delete from dm_bq_txhm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ketech.bq.ketech.entity.DmTxhmEntity">
+    insert into dm_bq_txhm (hmlx, gmtj, syqx, 
+      rjmc, dltxsbgs, zhlxdh, 
+      zjyzthcs, zjyythcs, zjyzclxhm, 
+      zjyyclxhm, zjyzbddhgs, zjyybddhgs, 
+      zyyzdctxhmgs, zjyydctxhmgs, zjbnbdyhkhdh, 
+      zjbnsfchjzy, hmhyd, khr, 
+      cyr, ip, zffs, bdzhb, 
+      bdwx, bdqq, bdyx, bdyhk, 
+      bdhm, qqhm)
+    values (#{hmlx,jdbcType=VARCHAR}, #{gmtj,jdbcType=VARCHAR}, #{syqx,jdbcType=VARCHAR}, 
+      #{rjmc,jdbcType=VARCHAR}, #{dltxsbgs,jdbcType=VARCHAR}, #{zhlxdh,jdbcType=VARCHAR}, 
+      #{zjyzthcs,jdbcType=VARCHAR}, #{zjyythcs,jdbcType=VARCHAR}, #{zjyzclxhm,jdbcType=VARCHAR}, 
+      #{zjyyclxhm,jdbcType=VARCHAR}, #{zjyzbddhgs,jdbcType=VARCHAR}, #{zjyybddhgs,jdbcType=VARCHAR}, 
+      #{zyyzdctxhmgs,jdbcType=VARCHAR}, #{zjyydctxhmgs,jdbcType=VARCHAR}, #{zjbnbdyhkhdh,jdbcType=VARCHAR}, 
+      #{zjbnsfchjzy,jdbcType=VARCHAR}, #{hmhyd,jdbcType=VARCHAR}, #{khr,jdbcType=VARCHAR}, 
+      #{cyr,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{zffs,jdbcType=VARCHAR}, #{bdzhb,jdbcType=VARCHAR}, 
+      #{bdwx,jdbcType=VARCHAR}, #{bdqq,jdbcType=VARCHAR}, #{bdyx,jdbcType=VARCHAR}, #{bdyhk,jdbcType=VARCHAR}, 
+      #{bdhm,jdbcType=VARCHAR}, #{qqhm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ketech.bq.ketech.entity.DmTxhmEntity">
+    insert into dm_bq_txhm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hmlx != null">
+        hmlx,
+      </if>
+      <if test="gmtj != null">
+        gmtj,
+      </if>
+      <if test="syqx != null">
+        syqx,
+      </if>
+      <if test="rjmc != null">
+        rjmc,
+      </if>
+      <if test="dltxsbgs != null">
+        dltxsbgs,
+      </if>
+      <if test="zhlxdh != null">
+        zhlxdh,
+      </if>
+      <if test="zjyzthcs != null">
+        zjyzthcs,
+      </if>
+      <if test="zjyythcs != null">
+        zjyythcs,
+      </if>
+      <if test="zjyzclxhm != null">
+        zjyzclxhm,
+      </if>
+      <if test="zjyyclxhm != null">
+        zjyyclxhm,
+      </if>
+      <if test="zjyzbddhgs != null">
+        zjyzbddhgs,
+      </if>
+      <if test="zjyybddhgs != null">
+        zjyybddhgs,
+      </if>
+      <if test="zyyzdctxhmgs != null">
+        zyyzdctxhmgs,
+      </if>
+      <if test="zjyydctxhmgs != null">
+        zjyydctxhmgs,
+      </if>
+      <if test="zjbnbdyhkhdh != null">
+        zjbnbdyhkhdh,
+      </if>
+      <if test="zjbnsfchjzy != null">
+        zjbnsfchjzy,
+      </if>
+      <if test="hmhyd != null">
+        hmhyd,
+      </if>
+      <if test="khr != null">
+        khr,
+      </if>
+      <if test="cyr != null">
+        cyr,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="zffs != null">
+        zffs,
+      </if>
+      <if test="bdzhb != null">
+        bdzhb,
+      </if>
+      <if test="bdwx != null">
+        bdwx,
+      </if>
+      <if test="bdqq != null">
+        bdqq,
+      </if>
+      <if test="bdyx != null">
+        bdyx,
+      </if>
+      <if test="bdyhk != null">
+        bdyhk,
+      </if>
+      <if test="bdhm != null">
+        bdhm,
+      </if>
+      <if test="qqhm != null">
+        qqhm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hmlx != null">
+        #{hmlx,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtj != null">
+        #{gmtj,jdbcType=VARCHAR},
+      </if>
+      <if test="syqx != null">
+        #{syqx,jdbcType=VARCHAR},
+      </if>
+      <if test="rjmc != null">
+        #{rjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dltxsbgs != null">
+        #{dltxsbgs,jdbcType=VARCHAR},
+      </if>
+      <if test="zhlxdh != null">
+        #{zhlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyzthcs != null">
+        #{zjyzthcs,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyythcs != null">
+        #{zjyythcs,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyzclxhm != null">
+        #{zjyzclxhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyyclxhm != null">
+        #{zjyyclxhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyzbddhgs != null">
+        #{zjyzbddhgs,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyybddhgs != null">
+        #{zjyybddhgs,jdbcType=VARCHAR},
+      </if>
+      <if test="zyyzdctxhmgs != null">
+        #{zyyzdctxhmgs,jdbcType=VARCHAR},
+      </if>
+      <if test="zjyydctxhmgs != null">
+        #{zjyydctxhmgs,jdbcType=VARCHAR},
+      </if>
+      <if test="zjbnbdyhkhdh != null">
+        #{zjbnbdyhkhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zjbnsfchjzy != null">
+        #{zjbnsfchjzy,jdbcType=VARCHAR},
+      </if>
+      <if test="hmhyd != null">
+        #{hmhyd,jdbcType=VARCHAR},
+      </if>
+      <if test="khr != null">
+        #{khr,jdbcType=VARCHAR},
+      </if>
+      <if test="cyr != null">
+        #{cyr,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="zffs != null">
+        #{zffs,jdbcType=VARCHAR},
+      </if>
+      <if test="bdzhb != null">
+        #{bdzhb,jdbcType=VARCHAR},
+      </if>
+      <if test="bdwx != null">
+        #{bdwx,jdbcType=VARCHAR},
+      </if>
+      <if test="bdqq != null">
+        #{bdqq,jdbcType=VARCHAR},
+      </if>
+      <if test="bdyx != null">
+        #{bdyx,jdbcType=VARCHAR},
+      </if>
+      <if test="bdyhk != null">
+        #{bdyhk,jdbcType=VARCHAR},
+      </if>
+      <if test="bdhm != null">
+        #{bdhm,jdbcType=VARCHAR},
+      </if>
+      <if test="qqhm != null">
+        #{qqhm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ketech.bq.ketech.entity.DmTxhmEntityExample" resultType="java.lang.Long">
+    select count(*) from dm_bq_txhm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dm_bq_txhm
+    <set>
+      <if test="record.hmlx != null">
+        hmlx = #{record.hmlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtj != null">
+        gmtj = #{record.gmtj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syqx != null">
+        syqx = #{record.syqx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rjmc != null">
+        rjmc = #{record.rjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dltxsbgs != null">
+        dltxsbgs = #{record.dltxsbgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhlxdh != null">
+        zhlxdh = #{record.zhlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyzthcs != null">
+        zjyzthcs = #{record.zjyzthcs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyythcs != null">
+        zjyythcs = #{record.zjyythcs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyzclxhm != null">
+        zjyzclxhm = #{record.zjyzclxhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyyclxhm != null">
+        zjyyclxhm = #{record.zjyyclxhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyzbddhgs != null">
+        zjyzbddhgs = #{record.zjyzbddhgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyybddhgs != null">
+        zjyybddhgs = #{record.zjyybddhgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zyyzdctxhmgs != null">
+        zyyzdctxhmgs = #{record.zyyzdctxhmgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjyydctxhmgs != null">
+        zjyydctxhmgs = #{record.zjyydctxhmgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjbnbdyhkhdh != null">
+        zjbnbdyhkhdh = #{record.zjbnbdyhkhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjbnsfchjzy != null">
+        zjbnsfchjzy = #{record.zjbnsfchjzy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hmhyd != null">
+        hmhyd = #{record.hmhyd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.khr != null">
+        khr = #{record.khr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyr != null">
+        cyr = #{record.cyr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zffs != null">
+        zffs = #{record.zffs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdzhb != null">
+        bdzhb = #{record.bdzhb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdwx != null">
+        bdwx = #{record.bdwx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdqq != null">
+        bdqq = #{record.bdqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdyx != null">
+        bdyx = #{record.bdyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdyhk != null">
+        bdyhk = #{record.bdyhk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bdhm != null">
+        bdhm = #{record.bdhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqhm != null">
+        qqhm = #{record.qqhm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dm_bq_txhm
+    set hmlx = #{record.hmlx,jdbcType=VARCHAR},
+      gmtj = #{record.gmtj,jdbcType=VARCHAR},
+      syqx = #{record.syqx,jdbcType=VARCHAR},
+      rjmc = #{record.rjmc,jdbcType=VARCHAR},
+      dltxsbgs = #{record.dltxsbgs,jdbcType=VARCHAR},
+      zhlxdh = #{record.zhlxdh,jdbcType=VARCHAR},
+      zjyzthcs = #{record.zjyzthcs,jdbcType=VARCHAR},
+      zjyythcs = #{record.zjyythcs,jdbcType=VARCHAR},
+      zjyzclxhm = #{record.zjyzclxhm,jdbcType=VARCHAR},
+      zjyyclxhm = #{record.zjyyclxhm,jdbcType=VARCHAR},
+      zjyzbddhgs = #{record.zjyzbddhgs,jdbcType=VARCHAR},
+      zjyybddhgs = #{record.zjyybddhgs,jdbcType=VARCHAR},
+      zyyzdctxhmgs = #{record.zyyzdctxhmgs,jdbcType=VARCHAR},
+      zjyydctxhmgs = #{record.zjyydctxhmgs,jdbcType=VARCHAR},
+      zjbnbdyhkhdh = #{record.zjbnbdyhkhdh,jdbcType=VARCHAR},
+      zjbnsfchjzy = #{record.zjbnsfchjzy,jdbcType=VARCHAR},
+      hmhyd = #{record.hmhyd,jdbcType=VARCHAR},
+      khr = #{record.khr,jdbcType=VARCHAR},
+      cyr = #{record.cyr,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      zffs = #{record.zffs,jdbcType=VARCHAR},
+      bdzhb = #{record.bdzhb,jdbcType=VARCHAR},
+      bdwx = #{record.bdwx,jdbcType=VARCHAR},
+      bdqq = #{record.bdqq,jdbcType=VARCHAR},
+      bdyx = #{record.bdyx,jdbcType=VARCHAR},
+      bdyhk = #{record.bdyhk,jdbcType=VARCHAR},
+      bdhm = #{record.bdhm,jdbcType=VARCHAR},
+      qqhm = #{record.qqhm,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
