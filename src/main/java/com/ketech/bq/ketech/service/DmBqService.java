@@ -19,6 +19,7 @@ import java.util.List;
  * @data:2019/6/27 17:12
  */
 @Service("DmBqService")
+
 public class DmBqService extends AbstractService<List<DmBqBean>,DmBqBeanExample> {
 
     @Autowired
