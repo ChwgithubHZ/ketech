@@ -2,6 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -15,6 +17,10 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+
+
+
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -47,8 +53,13 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.20</version>
+			<!--<version>1.0.20</version>-->
+			<version>1.0.26</version>
 		</dependency>
+
+
+
+
 		<!--configuration-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,6 +100,7 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.6</version>
 		</dependency>
+
 
 		<!--net.sf.json-->
 		<dependency>
@@ -187,10 +199,19 @@
 		</dependency>
 
 		<!--mysql-->
+		<!--<dependency>-->
+			<!--<groupId>mysql</groupId>-->
+			<!--<artifactId>mysql-connector-java</artifactId>-->
+		<!--</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+
 		</dependency>
+
 
 		<!--postgresql-->
 		<dependency>
@@ -198,11 +219,31 @@
 			<artifactId>org.postgresql.jdbc4</artifactId>
 			<version>8.3-603</version>
 		</dependency>
+       <!--mysql-->
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.2</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
 
 	</dependencies>
 
 	<build>
+		<finalName>bq_gx</finalName>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -243,9 +284,11 @@
 					<!-- 是否覆盖 -->
 					<overwrite>true</overwrite>
 					<!-- 自动生成的配置 -->
+					<!--<configurationFile>-->
+						<!--src/main/resources/mybatis/mybatis-mysql-generator.xml</configurationFile>-->
 					<configurationFile>
-						src/main/resources/mybatis/mybatis-generator.xml</configurationFile>
-				</configuration>
+						src/main/resources/mybatis/mybatis-pgsql-generator.xml</configurationFile>
+				   </configuration>
 			</plugin>
 
 		</plugins>

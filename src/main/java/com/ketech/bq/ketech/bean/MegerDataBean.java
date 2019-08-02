@@ -20,7 +20,6 @@ public class MegerDataBean {
 
     private List<DmTxhmEntity> txhmData;
 
-    private List<DmHmEntity> hdData;
 
    private List<NeofjDatabean> neofjData;
 
@@ -32,13 +31,7 @@ public class MegerDataBean {
         this.neofjData = neofjData;
     }
 
-    public List<DmHmEntity> getHdData() {
-        return hdData;
-    }
 
-    public void setHdData(List<DmHmEntity> hdData) {
-        this.hdData = hdData;
-    }
 
     public List<DmTxhmEntity> getTxhmData() {
         return txhmData;

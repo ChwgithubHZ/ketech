@@ -1,0 +1,39 @@
+省厅内网地址：  41.188.38.90:/opt/app    root/wwsh7834
+
+noe4j查询
+
+http://127.0.0.1:58889/datas-bq/service/query/neofj
+
+1 一层关系
+{
+    "params":{
+        "startLabels":"dm_st_wp",
+        "endLabels":"dm_st_wp",
+        "attributeType":"id",
+        "relationType":"ucase_zfb_zhxx_zfb_bdsj",
+        "attributeValue":"88bc2b1d-166c-4e3e-ab4d-97df85e0f786"
+    }
+}
+
+
+http://192.168.0.41:58889/datas-bq/service/query/neofjByPoint
+2 多层关系
+
+{
+    "params":{
+        "startLabels":"dm_st_ry",
+        "attributeType":"zjhm",
+        "attributeValue":"320382198505284814",
+        "layer":"2"
+} }
+
+通讯录
+http://127.0.0.1:58889/datas-bq/service/query/getTxl
+
+{
+    "type":"ketech.service.othertxl",
+    "params":
+            {"querytype":"QQ",
+             "queryparams":"1632833419"
+    }
+}

@@ -15,6 +15,7 @@ import com.ketech.bq.ketech.dataconfig.ResultJsonUtil;
 import com.ketech.bq.ketech.entity.*;
 import com.ketech.bq.ketech.service.*;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.neo4j.driver.internal.InternalNode;
 import org.neo4j.driver.internal.InternalPath;
 import org.neo4j.driver.internal.InternalRelationship;
@@ -26,8 +27,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.io.File;
@@ -40,6 +43,7 @@ import static org.neo4j.driver.v1.Values.parameters;
  * @createBy:
  * @data:2019/6/26 16:27
  */
+
 @RestController
 @RequestMapping("service")
 public class IndexController extends BaseController {
@@ -48,6 +52,9 @@ public class IndexController extends BaseController {
 
     @Autowired
     private DmBqService service;
+
+    @Autowired
+    private DmTxlService dmTxlService;
 
     @Autowired
     private DmWpService dmWpService;
@@ -113,13 +120,12 @@ public class IndexController extends BaseController {
 
     private Driver createDrive() {
         return GraphDatabase.driver(url, AuthTokens.basic(username, password));
-
-
     }
 
 
     /**
      * 通过两个实体进行对应的关系查询，例如查询QQ号与手机号之间的关系
+     *
      * @param params
      * @return
      */
@@ -141,19 +147,19 @@ public class IndexController extends BaseController {
         String attributeValue = param.getParams().getAttributeValue();
 
         //当前neo4j所有标签
-        String[] allLabel={"dm_st_asj","dm_st_wp","dm_st_ry"};
-        int startcode=0;
-        int endcode=0;
-        for (String label:allLabel){
-            if(startLabels.equals(label)){
-                startcode+=1;
+        String[] allLabel = {"dm_st_asj", "dm_st_wp", "dm_st_ry"};
+        int startcode = 0;
+        int endcode = 0;
+        for (String label : allLabel) {
+            if (startLabels.equals(label)) {
+                startcode += 1;
             }
-            if(endLabels.equals(label)){
-                endcode+=1;
+            if (endLabels.equals(label)) {
+                endcode += 1;
             }
 
         }
-        if(startcode==0||endcode==0){
+        if (startcode == 0 || endcode == 0) {
             return ResultJsonUtil.buildExceptionJson("您输入的标签有误！");
         }
 
@@ -224,8 +230,10 @@ public class IndexController extends BaseController {
 
     }
 
+
     /**
      * 通过一个实体编号进行多层关系的查询，例如查询手机号相关的N层关系与实体
+     *
      * @param params
      * @return
      */
@@ -247,8 +255,8 @@ public class IndexController extends BaseController {
         //属性值
         String attributeValue = param.getParams().getAttributeValue();
         try {
-            if(StringUtils.isEmpty(startLabels) || StringUtils.isEmpty(attributeType) || StringUtils.isEmpty(layer) || StringUtils.isEmpty(attributeValue)){
-                return ResultJsonUtil.buildErrorJson(500,"参数错误");
+            if (StringUtils.isEmpty(startLabels) || StringUtils.isEmpty(attributeType) || StringUtils.isEmpty(layer) || StringUtils.isEmpty(attributeValue)) {
+                return ResultJsonUtil.buildErrorJson(500, "参数错误");
             }
 
             String math = "match (start_node:" + startLabels + "{" + attributeType + ":'" + attributeValue + "'}) -[r*1.." + layer + "]- (end_node) return start_node,r,end_node";
@@ -263,13 +271,13 @@ public class IndexController extends BaseController {
                 Map<String, Object> date = record.asMap();
                 for (String key : date.keySet()) {
                     Object object = date.get(key);
-                    if("start_node".equals(key) || "end_node".equals(key)){
+                    if ("start_node".equals(key) || "end_node".equals(key)) {
                         InternalNode data = (InternalNode) object;// 强制转换
                         long nodeid = data.id();
                         Iterator<String> labels = data.labels().iterator();
                         String label = "";
-                        if( data.labels().size() == 1 ){
-                            while(labels.hasNext()) {
+                        if (data.labels().size() == 1) {
+                            while (labels.hasNext()) {
                                 label = labels.next();
                             }
                         }
@@ -278,26 +286,26 @@ public class IndexController extends BaseController {
                         Object obj = null;
                         switch (label) {
                             case "dm_st_asj":
-                                obj = caseEntity("dm_st_asj",data1);
+                                obj = caseEntity("dm_st_asj", data1);
                                 break;
                             case "dm_st_wp":
-                                obj = objectEntity("dm_st_wp",data1);
+                                obj = objectEntity("dm_st_wp", data1);
                                 break;
                             case "dm_st_ry":
-                                obj = peopleEntity("dm_st_ry",data1);
+                                obj = peopleEntity("dm_st_ry", data1);
                                 break;
                         }
-                        if( null == nodedatas.get(Long.toString(nodeid)) && null != obj){
-                            nodedatas.put(Long.toString(nodeid),obj);
+                        if (null == nodedatas.get(Long.toString(nodeid)) && null != obj) {
+                            nodedatas.put(Long.toString(nodeid), obj);
                         }
-                    }else{
+                    } else {
                         List<InternalRelationship> relationships = (List<InternalRelationship>) object;// 强制转换
-                        if(!relationships.isEmpty()){
-                            for(InternalRelationship relationship:relationships) {
+                        if (!relationships.isEmpty()) {
+                            for (InternalRelationship relationship : relationships) {
                                 lineJsonObject = lineToJson(relationship);
                                 lineJsonArray.add(lineJsonObject);
                             }
-                        }else{
+                        } else {
                             continue;
                         }
                     }
@@ -308,16 +316,16 @@ public class IndexController extends BaseController {
             if (nodedatas.size() == 0) {
                 results = ResultJsonUtil.buildSuccessMsgJson("未查询到结果！");
             } else {
-                jsonObject.put("nodes",nodedatas);
-                jsonObject.put("links",lineJsonArray);
-                results = ResultJsonUtil.buildSuccessDataJson(jsonObject,"success");
+                jsonObject.put("nodes", nodedatas);
+                jsonObject.put("links", lineJsonArray);
+                results = ResultJsonUtil.buildSuccessDataJson(jsonObject, "success");
             }
 
             // 关闭连接
             session.close();
             driver.close();
         } catch (Exception e) {
-            results = ResultJsonUtil.buildErrorJson(505,e.toString());
+            results = ResultJsonUtil.buildErrorJson(505, e.toString());
         }
         return results;
 
@@ -325,14 +333,15 @@ public class IndexController extends BaseController {
 
     /**
      * Louzh新增 关系转成json
+     *
      * @param relationship
      * @return
      */
-    public JSONObject lineToJson(InternalRelationship relationship){
+    public JSONObject lineToJson(InternalRelationship relationship) {
         JSONObject lineJsonObject = new JSONObject();
         Map<String, Object> data2 = relationship.asMap();// 添加关系的属性  //
         for (String key1 : data2.keySet()) {
-            switch (key1){
+            switch (key1) {
                 case "gxms":
                     lineJsonObject.put("gxms", data2.get(key1));
                     lineJsonObject.put("gxms_cn", RelationType.getRelationType(data2.get(key1).toString()));
@@ -360,10 +369,45 @@ public class IndexController extends BaseController {
         long source = relationship.startNodeId();// 起始节点id
         long target = relationship.endNodeId();// 结束节点Id
 
-        lineJsonObject.put("source", "'"+source+"'");
-        lineJsonObject.put("target", "'"+target+"'");
+        lineJsonObject.put("source", "'" + source + "'");
+        lineJsonObject.put("target", "'" + target + "'");
         return lineJsonObject;
     }
+
+    /**
+     * 1、通过输入号码和类型，查询他所在的通讯录或好友列表；
+     * 2、通过输入号码和类型，查询他所在的通讯录或好友列表其他号码和主号码;
+     *
+     * @param params
+     * @return
+     */
+    @PostMapping("/query/getTxl")
+    public String getTxl(@Valid @RequestBody String params) {
+
+        QueryParamsBean queryParamsBean = JSONObject.parseObject(params, QueryParamsBean.class);
+        String service_type = queryParamsBean.getType();
+
+        if (queryParamsBean.getParams().getQueryparams().length() == 0 || queryParamsBean.getParams().getQuerytype().length() == 0)
+            return ResultJsonUtil.buildErrorJson("参数不合法!");
+
+        if (service_type != null) {
+            switch (service_type) {
+                case "ketech.service.owntxl":  //  查号码的通讯录或好友列表
+                    List<TxlEntity> owntxl = dmTxlService.getTxlList(queryParamsBean.getParams());
+                    return ResultJsonUtil.buildSuccessDataJson(owntxl);
+                case "ketech.service.othertxl": //  查号码所在通讯录的主机号码
+                    List<TxlEntity> othertxl = dmTxlService.getOtherTxlList(queryParamsBean.getParams());
+                    return ResultJsonUtil.buildSuccessDataJson(othertxl);
+                default:
+                    throw new DescribeException(ExceptionEnum.service_unknow);
+            }
+        } else {
+            throw new DescribeException(ExceptionEnum.service_unknow);
+        }
+
+    }
+
+
     /**
      * ID	ID	string
      * ASJBH	案事件编号	string
@@ -399,7 +443,7 @@ public class IndexController extends BaseController {
         return cases;
     }
 
-    private NoefjCaseEntity caseEntity(String type,Map<String, Object> data) {
+    private NoefjCaseEntity caseEntity(String type, Map<String, Object> data) {
 
         NoefjCaseEntity cases = new NoefjCaseEntity();
         cases.setLabelType(type);
@@ -417,6 +461,7 @@ public class IndexController extends BaseController {
         cases.setCreatedtime(data.get("createdtime").toString());
         return cases;
     }
+
     /**
      * ID	ID	string
      * WPBH	物品编号	string
@@ -465,6 +510,7 @@ public class IndexController extends BaseController {
         object.setCreatedtime(data.get("createdtime").toString());
         return object;
     }
+
     /**
      * private String id;
      * //实体ID1

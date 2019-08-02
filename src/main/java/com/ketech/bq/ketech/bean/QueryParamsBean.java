@@ -18,9 +18,9 @@ public class QueryParamsBean {
 
 
 
-    //
+    // 页码
     private Integer pagenum;
-    //
+    // 页码大小
     private Integer pagesize;
 
 

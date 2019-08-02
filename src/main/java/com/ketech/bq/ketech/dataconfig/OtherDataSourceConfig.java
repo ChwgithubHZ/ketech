@@ -6,7 +6,6 @@ import com.alibaba.druid.support.http.WebStatFilter;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -30,7 +28,7 @@ import java.sql.SQLException;
 //@MapperScan(basePackages = "com.ketech.vos.mapperfz", sqlSessionTemplateRef = "fzSqlSessionTemplate")
 public class OtherDataSourceConfig {
 
-    private Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
+    private Logger logger = LoggerFactory.getLogger(DataSourcePgConfig.class);
 
     @Value("${spring.datasource.fz.type}")
     private String type;

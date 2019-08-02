@@ -2,25 +2,25 @@
 <configuration debug="false" scan="true" scanPeriod="1 seconds">
 
 
-    <contextName>logback</contextName>
+    <contextName>ketech</contextName>
     <!--<property name="log.path" value="/data/applogs/vos/vos.log"/>-->
 
     <!--日志输出路径-->
-    <property name="log.path" value="/Users/chw-mac/Desktop/vos.log"/>
+    <property name="log.path" value="logs"/>
     <!--<property name="log.path" value="/var/log/ketech/bq-noe4j.log"/>-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
        <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter" >
             <level>WARN</level>
         </filter>-->
         <!--定义控制台输出格式-->
+
         <encoder>
-            <!--<pattern>%black(@chw) %red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger) - %cyan(%msg%n)</pattern>-->
-            <pattern>%d{HH:mm:ss.SSS} %contextName  [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%cyan(%d{yyyy-MM-dd HH:mm:ss}) %contextName  %green([%thread]) %highlight(%-5level) %boldGreen(%logger{36}) - %msg%n</pattern>
         </encoder>
     </appender>
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}</file>
+        <file>${log.path}/info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${log.path}.%d{yyyy-MM-dd}.zip</fileNamePattern>
             <!--7天的时间周期，日志量最大2GB-->
@@ -39,7 +39,11 @@
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
     </root>
-
+    <logger name="com.ketech.bq.ketech.mapper.mysqlmapper" level="DEBUG"/>
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
     <!--<logger name="com.xxl.job.executor.service.info" level="WARN" additivity="false">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>

@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ketech.bq.ketech.mapper.mysqlmapper.TxlEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.ketech.bq.ketech.entity.TxlEntity" >
+    <result column="BH" property="bh" jdbcType="VARCHAR" />
+    <result column="GLZHM" property="glzhm" jdbcType="VARCHAR" />
+    <result column="GLZBID" property="glzbid" jdbcType="VARCHAR" />
+    <result column="TXLLX" property="txllx" jdbcType="VARCHAR" />
+    <result column="HM" property="hm" jdbcType="VARCHAR" />
+    <result column="TXLCCWLXH" property="txlccwlxh" jdbcType="VARCHAR" />
+    <result column="HYMC" property="hymc" jdbcType="VARCHAR" />
+    <result column="HYNC" property="hync" jdbcType="VARCHAR" />
+    <result column="HYBZMC" property="hybzmc" jdbcType="VARCHAR" />
+    <result column="XB" property="xb" jdbcType="VARCHAR" />
+    <result column="DQ" property="dq" jdbcType="VARCHAR" />
+    <result column="GXQM" property="gxqm" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="GLYX" property="glyx" jdbcType="VARCHAR" />
+    <result column="GLSJHM" property="glsjhm" jdbcType="VARCHAR" />
+    <result column="GLQQ" property="glqq" jdbcType="VARCHAR" />
+    <result column="GLWB" property="glwb" jdbcType="VARCHAR" />
+    <result column="GLBK" property="glbk" jdbcType="VARCHAR" />
+    <result column="GLMSN" property="glmsn" jdbcType="VARCHAR" />
+    <result column="YZHMGX" property="yzhmgx" jdbcType="VARCHAR" />
+    <result column="XBPY" property="xbpy" jdbcType="VARCHAR" />
+    <result column="ZT" property="zt" jdbcType="VARCHAR" />
+    <result column="YBCJSJ" property="ybcjsj" jdbcType="TIMESTAMP" />
+    <result column="YBSCSJ" property="ybscsj" jdbcType="TIMESTAMP" />
+    <result column="YBTBSJ" property="ybtbsj" jdbcType="TIMESTAMP" />
+    <result column="CJSJ" property="cjsj" jdbcType="TIMESTAMP" />
+    <result column="SJLY" property="sjly" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+
+
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List" >
+    BH, GLZHM, GLZBID, TXLLX, HM, TXLCCWLXH, HYMC, HYNC, HYBZMC, XB, DQ, GXQM, BZ, GLYX, 
+    GLSJHM, GLQQ, GLWB, GLBK, GLMSN, YZHMGX, XBPY, ZT, YBCJSJ, YBSCSJ, YBTBSJ, CJSJ, 
+    SJLY
+  </sql>
+  <sql id="Base_Column2_List" >
+    HM,HYMC
+  </sql>
+
+  <select id="selectByownPhone" resultMap="BaseResultMap" parameterType="com.ketech.bq.ketech.entity.TxlEntityExample" >
+    select
+
+    <include refid="Base_Column2_List" />
+    from dm_txl
+
+  </select>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ketech.bq.ketech.entity.TxlEntityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from dm_txlk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <delete id="deleteByExample" parameterType="com.ketech.bq.ketech.entity.TxlEntityExample" >
+    delete from dm_txl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ketech.bq.ketech.entity.TxlEntity" >
+    insert into dm_txl (BH, GLZHM, GLZBID, 
+      TXLLX, HM, TXLCCWLXH, 
+      HYMC, HYNC, HYBZMC, 
+      XB, DQ, GXQM, BZ, 
+      GLYX, GLSJHM, GLQQ, 
+      GLWB, GLBK, GLMSN, 
+      YZHMGX, XBPY, ZT, YBCJSJ, 
+      YBSCSJ, YBTBSJ, CJSJ, 
+      SJLY)
+    values (#{bh,jdbcType=VARCHAR}, #{glzhm,jdbcType=VARCHAR}, #{glzbid,jdbcType=VARCHAR}, 
+      #{txllx,jdbcType=VARCHAR}, #{hm,jdbcType=VARCHAR}, #{txlccwlxh,jdbcType=VARCHAR}, 
+      #{hymc,jdbcType=VARCHAR}, #{hync,jdbcType=VARCHAR}, #{hybzmc,jdbcType=VARCHAR}, 
+      #{xb,jdbcType=VARCHAR}, #{dq,jdbcType=VARCHAR}, #{gxqm,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, 
+      #{glyx,jdbcType=VARCHAR}, #{glsjhm,jdbcType=VARCHAR}, #{glqq,jdbcType=VARCHAR}, 
+      #{glwb,jdbcType=VARCHAR}, #{glbk,jdbcType=VARCHAR}, #{glmsn,jdbcType=VARCHAR}, 
+      #{yzhmgx,jdbcType=VARCHAR}, #{xbpy,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, #{ybcjsj,jdbcType=TIMESTAMP}, 
+      #{ybscsj,jdbcType=TIMESTAMP}, #{ybtbsj,jdbcType=TIMESTAMP}, #{cjsj,jdbcType=TIMESTAMP}, 
+      #{sjly,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ketech.bq.ketech.entity.TxlEntity" >
+    insert into dm_txl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bh != null" >
+        BH,
+      </if>
+      <if test="glzhm != null" >
+        GLZHM,
+      </if>
+      <if test="glzbid != null" >
+        GLZBID,
+      </if>
+      <if test="txllx != null" >
+        TXLLX,
+      </if>
+      <if test="hm != null" >
+        HM,
+      </if>
+      <if test="txlccwlxh != null" >
+        TXLCCWLXH,
+      </if>
+      <if test="hymc != null" >
+        HYMC,
+      </if>
+      <if test="hync != null" >
+        HYNC,
+      </if>
+      <if test="hybzmc != null" >
+        HYBZMC,
+      </if>
+      <if test="xb != null" >
+        XB,
+      </if>
+      <if test="dq != null" >
+        DQ,
+      </if>
+      <if test="gxqm != null" >
+        GXQM,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="glyx != null" >
+        GLYX,
+      </if>
+      <if test="glsjhm != null" >
+        GLSJHM,
+      </if>
+      <if test="glqq != null" >
+        GLQQ,
+      </if>
+      <if test="glwb != null" >
+        GLWB,
+      </if>
+      <if test="glbk != null" >
+        GLBK,
+      </if>
+      <if test="glmsn != null" >
+        GLMSN,
+      </if>
+      <if test="yzhmgx != null" >
+        YZHMGX,
+      </if>
+      <if test="xbpy != null" >
+        XBPY,
+      </if>
+      <if test="zt != null" >
+        ZT,
+      </if>
+      <if test="ybcjsj != null" >
+        YBCJSJ,
+      </if>
+      <if test="ybscsj != null" >
+        YBSCSJ,
+      </if>
+      <if test="ybtbsj != null" >
+        YBTBSJ,
+      </if>
+      <if test="cjsj != null" >
+        CJSJ,
+      </if>
+      <if test="sjly != null" >
+        SJLY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bh != null" >
+        #{bh,jdbcType=VARCHAR},
+      </if>
+      <if test="glzhm != null" >
+        #{glzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="glzbid != null" >
+        #{glzbid,jdbcType=VARCHAR},
+      </if>
+      <if test="txllx != null" >
+        #{txllx,jdbcType=VARCHAR},
+      </if>
+      <if test="hm != null" >
+        #{hm,jdbcType=VARCHAR},
+      </if>
+      <if test="txlccwlxh != null" >
+        #{txlccwlxh,jdbcType=VARCHAR},
+      </if>
+      <if test="hymc != null" >
+        #{hymc,jdbcType=VARCHAR},
+      </if>
+      <if test="hync != null" >
+        #{hync,jdbcType=VARCHAR},
+      </if>
+      <if test="hybzmc != null" >
+        #{hybzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null" >
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="dq != null" >
+        #{dq,jdbcType=VARCHAR},
+      </if>
+      <if test="gxqm != null" >
+        #{gxqm,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="glyx != null" >
+        #{glyx,jdbcType=VARCHAR},
+      </if>
+      <if test="glsjhm != null" >
+        #{glsjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="glqq != null" >
+        #{glqq,jdbcType=VARCHAR},
+      </if>
+      <if test="glwb != null" >
+        #{glwb,jdbcType=VARCHAR},
+      </if>
+      <if test="glbk != null" >
+        #{glbk,jdbcType=VARCHAR},
+      </if>
+      <if test="glmsn != null" >
+        #{glmsn,jdbcType=VARCHAR},
+      </if>
+      <if test="yzhmgx != null" >
+        #{yzhmgx,jdbcType=VARCHAR},
+      </if>
+      <if test="xbpy != null" >
+        #{xbpy,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null" >
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="ybcjsj != null" >
+        #{ybcjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ybscsj != null" >
+        #{ybscsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ybtbsj != null" >
+        #{ybtbsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cjsj != null" >
+        #{cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sjly != null" >
+        #{sjly,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ketech.bq.ketech.entity.TxlEntityExample" resultType="java.lang.Integer" >
+    select count(*) from dm_txl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dm_txl
+    <set >
+      <if test="record.bh != null" >
+        BH = #{record.bh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glzhm != null" >
+        GLZHM = #{record.glzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glzbid != null" >
+        GLZBID = #{record.glzbid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txllx != null" >
+        TXLLX = #{record.txllx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hm != null" >
+        HM = #{record.hm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txlccwlxh != null" >
+        TXLCCWLXH = #{record.txlccwlxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hymc != null" >
+        HYMC = #{record.hymc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hync != null" >
+        HYNC = #{record.hync,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hybzmc != null" >
+        HYBZMC = #{record.hybzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xb != null" >
+        XB = #{record.xb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dq != null" >
+        DQ = #{record.dq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxqm != null" >
+        GXQM = #{record.gxqm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glyx != null" >
+        GLYX = #{record.glyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glsjhm != null" >
+        GLSJHM = #{record.glsjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glqq != null" >
+        GLQQ = #{record.glqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glwb != null" >
+        GLWB = #{record.glwb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbk != null" >
+        GLBK = #{record.glbk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glmsn != null" >
+        GLMSN = #{record.glmsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yzhmgx != null" >
+        YZHMGX = #{record.yzhmgx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xbpy != null" >
+        XBPY = #{record.xbpy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null" >
+        ZT = #{record.zt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ybcjsj != null" >
+        YBCJSJ = #{record.ybcjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ybscsj != null" >
+        YBSCSJ = #{record.ybscsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ybtbsj != null" >
+        YBTBSJ = #{record.ybtbsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cjsj != null" >
+        CJSJ = #{record.cjsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sjly != null" >
+        SJLY = #{record.sjly,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dm_txl
+    set BH = #{record.bh,jdbcType=VARCHAR},
+      GLZHM = #{record.glzhm,jdbcType=VARCHAR},
+      GLZBID = #{record.glzbid,jdbcType=VARCHAR},
+      TXLLX = #{record.txllx,jdbcType=VARCHAR},
+      HM = #{record.hm,jdbcType=VARCHAR},
+      TXLCCWLXH = #{record.txlccwlxh,jdbcType=VARCHAR},
+      HYMC = #{record.hymc,jdbcType=VARCHAR},
+      HYNC = #{record.hync,jdbcType=VARCHAR},
+      HYBZMC = #{record.hybzmc,jdbcType=VARCHAR},
+      XB = #{record.xb,jdbcType=VARCHAR},
+      DQ = #{record.dq,jdbcType=VARCHAR},
+      GXQM = #{record.gxqm,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      GLYX = #{record.glyx,jdbcType=VARCHAR},
+      GLSJHM = #{record.glsjhm,jdbcType=VARCHAR},
+      GLQQ = #{record.glqq,jdbcType=VARCHAR},
+      GLWB = #{record.glwb,jdbcType=VARCHAR},
+      GLBK = #{record.glbk,jdbcType=VARCHAR},
+      GLMSN = #{record.glmsn,jdbcType=VARCHAR},
+      YZHMGX = #{record.yzhmgx,jdbcType=VARCHAR},
+      XBPY = #{record.xbpy,jdbcType=VARCHAR},
+      ZT = #{record.zt,jdbcType=VARCHAR},
+      YBCJSJ = #{record.ybcjsj,jdbcType=TIMESTAMP},
+      YBSCSJ = #{record.ybscsj,jdbcType=TIMESTAMP},
+      YBTBSJ = #{record.ybtbsj,jdbcType=TIMESTAMP},
+      CJSJ = #{record.cjsj,jdbcType=TIMESTAMP},
+      SJLY = #{record.sjly,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

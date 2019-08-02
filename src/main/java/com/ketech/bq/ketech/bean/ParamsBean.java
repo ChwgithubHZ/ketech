@@ -12,18 +12,19 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class ParamsBean {
-
+    // 查询类型
     private String querytype;
-
+    // 查询参数
     private String queryparams;
 
-
+    // 分页参数
     // 页码
     private Integer pagenum;
     // 每页条数
     private Integer pagesize;
 
-    //    neo4j 查询入参数
+
+    //   neo4j 查询入参数
     //开始标签
     @NotNull
     private String startLabels;

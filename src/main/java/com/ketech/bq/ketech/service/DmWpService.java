@@ -18,7 +18,8 @@ import java.util.List;
  * @createBy:lailai
  * @data:2019/6/28 14:17
  */
-@Service("DmWpService")
+//@Service("DmWpService")
+@Service
 public class DmWpService  extends AbstractService<List<DmWpEntity>,DmWpEntityExample> {
 
     private static  List<String> phone_ins = new ArrayList<>();
